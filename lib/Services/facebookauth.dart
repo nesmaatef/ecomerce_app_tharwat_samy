@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 
-import '../Screens/Category.dart';
-import '../Screens/Splash.dart';
+import '../Screens/category.dart';
+import '../Screens/login.dart';
 
 class AuthService {
   //Determine if the user is authenticated and redirect accordingly
@@ -15,9 +15,9 @@ class AuthService {
           if (snapshot.hasData) {
             // user is authorozed hence redirect to home screen
             return Category();
-          } else
-            // user not authorized hence redirect to login page
-            return Splash();
+          } else {
+            return LoginScreen();
+          }
         });
   }
 }

@@ -1,12 +1,13 @@
 // @dart=2.9
-import 'package:ecomerce/screens/CartScreen.dart';
-import 'package:ecomerce/screens/Home.dart';
+import 'package:ecomerce/consts.dart';
+import 'package:ecomerce/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class Category extends StatefulWidget {
   static String id = 'Category';
+
+  const Category({Key key}) : super(key: key);
 
   @override
   State<Category> createState() => _CategoryState();
@@ -27,41 +28,18 @@ class _CategoryState extends State<Category> {
     double number = MediaQuery.of(context).size.height * 7;
 
     return Scaffold(
-      bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Color(0xFFf1f0f2),
-        animationCurve: Curves.linearToEaseOut,
-        height: 50,
-        items: <Widget>[
-          Icon(
-            Icons.view_quilt,
-            size: 30,
-            color: Color(0xFFFA4248),
-          ),
-          GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, Cart.id);
-              },
-              child: Icon(Icons.shopping_cart,
-                  size: 30, color: Color(0xFFFA4248))),
-          Icon(Icons.search, size: 30, color: Color(0xFFFA4248)),
-          Icon(Icons.favorite, size: 30, color: Color(0xFFFA4248)),
-        ],
-        onTap: (index) {
-          //Handle button tap
-        },
-      ),
-      backgroundColor: Color(0xFFf1f0f2),
+      backgroundColor: Colors.white,
       body: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 100,
           ),
-          Text(
+          const Text(
             'Collection',
             style: TextStyle(
-                fontSize: 27, color: Color(0xFFFA4248), fontFamily: 'Raleway'),
+                fontSize: 27, color: KAppColor, fontFamily: 'Raleway'),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Swiper(
@@ -73,11 +51,11 @@ class _CategoryState extends State<Category> {
               },
               layout: SwiperLayout.CUSTOM,
               customLayoutOption:
-                  new CustomLayoutOption(startIndex: -1, stateCount: 3)
+                  CustomLayoutOption(startIndex: -1, stateCount: 3)
                       .addRotate([0.0 / 180, 0.0, 0.0 / 180]).addTranslate([
-                new Offset(-310.0, 0.0),
-                new Offset(0.0, 0.0),
-                new Offset(310.0, 0.0) //for right element
+                const Offset(-310.0, 0.0),
+                const Offset(0.0, 0.0),
+                const Offset(310.0, 0.0) //for right element
               ]),
               itemWidth: 280,
               itemHeight: MediaQuery.of(context).size.height * .6,
@@ -97,9 +75,9 @@ class _CategoryState extends State<Category> {
                     bottom: 70,
                     child: Text(
                       imageList1[index],
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 40,
-                          color: Color(0xFFFA4248),
+                          color: KAppColor,
                           fontFamily: 'Raleway'),
                     ),
                   )

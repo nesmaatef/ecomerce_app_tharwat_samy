@@ -8,18 +8,17 @@ import 'package:ecomerce/screens/Admin/Editproductscreen.dart';
 import 'dart:core';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 
-class Update_Product extends StatefulWidget {
+class UpdateProduct extends StatefulWidget {
   static String id = 'UpdateProduct';
 
-  const Update_Product({Key key}) : super(key: key);
+  const UpdateProduct({Key key}) : super(key: key);
 
   @override
-  _Update_ProductState createState() => _Update_ProductState();
+  _UpdateProductState createState() => _UpdateProductState();
 }
 
-class _Update_ProductState extends State<Update_Product> {
+class _UpdateProductState extends State<UpdateProduct> {
   final store = Store();
   List<products> product11;
   @override
@@ -42,7 +41,7 @@ class _Update_ProductState extends State<Update_Product> {
               ));
             }
             return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, childAspectRatio: .8),
               itemBuilder: (context, index) => Padding(
                 padding:
@@ -63,13 +62,13 @@ class _Update_ProductState extends State<Update_Product> {
                               Navigator.pushNamed(context, Edit_product.id,
                                   arguments: product[index]);
                             },
-                            child: Text('Update'),
+                            child: const Text('Update'),
                           ),
                           MypopupMenuItem(
                             onclick: () {
                               store.Deleteproduct(product[index].PId);
                             },
-                            child: Text('Delete'),
+                            child: const Text('Delete'),
                           ),
                         ]);
                   },
@@ -94,8 +93,8 @@ class _Update_ProductState extends State<Update_Product> {
                                 children: [
                                   Text(
                                     product[index].pname,
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
                                   ),
                                   Text('\$ ${product[index].pprice}'),
                                 ],
@@ -114,7 +113,7 @@ class _Update_ProductState extends State<Update_Product> {
               itemCount: product.length,
             );
           } else {
-            return Center(
+            return const Center(
               child: Text('Loading.....'),
             );
           }

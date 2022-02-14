@@ -65,7 +65,7 @@ class _AdminHomeState extends State<AdminHome> {
                       if (index == 0) {
                         Navigator.pushNamed(context, AddProduct.id);
                       } else if (index == 1) {
-                        Navigator.pushNamed(context, Update_Product.id);
+                        Navigator.pushNamed(context, UpdateProduct.id);
                       } else if (index == 2) {
                         // Navigator.pushNamed(context, Update_Product.id);
                       }

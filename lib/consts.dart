@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const KMainColor = Color(0xFFFFC12F);
 const KSecondaryColor = Color(0xFFFFE6AC);
+const KAppColor = Color(0xFFFA4248);
 const KProductname = 'Productname';
 const KProductprice = 'Productprice';
 const KProductdscription = 'Productdescription';

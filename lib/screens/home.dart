@@ -1,23 +1,20 @@
 // @dart=2.9
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:ecomerce/Models/Products.dart';
 import 'package:ecomerce/Provider/Favorite.dart';
 import 'package:ecomerce/Services/Store.dart';
 import 'package:ecomerce/consts.dart';
-import 'package:ecomerce/consts.dart';
-import 'package:ecomerce/screens/FavoriteScreen.dart';
-import 'package:ecomerce/screens/ProductInfo.dart';
+import 'package:ecomerce/screens/product_info.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'CartScreen.dart';
 import 'package:ecomerce/functions.dart';
-import 'package:ecomerce/screens/CartScreen.dart';
 import 'package:ecomerce/widgets/productview.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
   static String id = 'Home';
+
+  const Home({Key key}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -40,34 +37,8 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final count = ModalRoute.of(context).settings.arguments;
     name = count;
-    //print(name);
     return Scaffold(
       backgroundColor: Colors.white,
-      bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Color(0xFFf1f0f2).withOpacity(.5),
-        animationCurve: Curves.linearToEaseOut,
-        height: 50,
-        items: <Widget>[
-          Icon(
-            Icons.home,
-            size: 30,
-            color: Color(0xFFFA4248),
-          ),
-          Icon(Icons.shopping_cart, size: 30, color: Color(0xFFFA4248)),
-          Icon(Icons.search, size: 30, color: Color(0xFFFA4248)),
-          GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, FavoriteScreen.id);
-              },
-              child: Icon(Icons.favorite, size: 30, color: Color(0xFFFA4248))),
-        ],
-        onTap: (index) {
-          if (index == 0) {
-          } else if (index == 1) {
-            Navigator.pushNamed(context, Cart.id);
-          } else if (index == 2) {}
-        },
-      ),
       body: Stack(children: [
         DefaultTabController(
           length: 2,
@@ -87,7 +58,7 @@ class _HomeState extends State<Home> {
                         style: GoogleFonts.montserrat(
                           textStyle: TextStyle(
                             color: tapbar_index == 0
-                                ? Color(0xFFFA4248)
+                                ? KAppColor
                                 : Color(0xFF707070),
                             fontSize: tapbar_index == 0 ? 16 : 14,
                           ),
@@ -96,7 +67,7 @@ class _HomeState extends State<Home> {
                         style: GoogleFonts.montserrat(
                           textStyle: TextStyle(
                             color: tapbar_index == 1
-                                ? Color(0xFFFA4248)
+                                ? KAppColor
                                 : Color(0xFF707070),
                             fontSize: tapbar_index == 1 ? 16 : 14,
                           ),
@@ -119,8 +90,8 @@ class _HomeState extends State<Home> {
                 color: Colors.white,
                 child: Text('Discover'.toUpperCase(),
                     style: GoogleFonts.montserrat(
-                      textStyle: TextStyle(
-                        color: Color(0xFFFA4248),
+                      textStyle: const TextStyle(
+                        color: KAppColor,
                         fontSize: 20,
                       ),
                     )),
@@ -160,7 +131,7 @@ class _HomeState extends State<Home> {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, childAspectRatio: .7),
               itemBuilder: (context, index) => Padding(
                 padding:
@@ -174,6 +145,7 @@ class _HomeState extends State<Home> {
                         onTap: () {
                           Navigator.pushNamed(context, Info.id,
                               arguments: product[index]);
+                          // ignore: avoid_print
                           print(product[index].PId);
                         },
                         child: ClipRRect(
@@ -200,13 +172,13 @@ class _HomeState extends State<Home> {
                                     Text(
                                       product[index].pname,
                                       style: GoogleFonts.montserrat(
-                                        textStyle: TextStyle(
+                                        textStyle: const TextStyle(
                                             color: Colors.black,
                                             fontSize: 16,
                                             fontWeight: FontWeight.normal),
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     GestureDetector(
                                         onTap: () {
                                           setState(() {
@@ -216,22 +188,20 @@ class _HomeState extends State<Home> {
                                         },
                                         child: favotite.isfavorite(
                                                 product, product[index].PId)
-                                            ? Icon(Icons.favorite,
-                                                size: 30,
-                                                color: Color(0xFFFA4248))
-                                            : Icon(Icons.favorite_border,
-                                                size: 30,
-                                                color: Color(0xFFFA4248))),
-                                    SizedBox(
+                                            ? const Icon(Icons.favorite,
+                                                size: 30, color: KAppColor)
+                                            : const Icon(Icons.favorite_border,
+                                                size: 30, color: KAppColor)),
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 Text('\$ ${product[index].pprice}',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16,
                                         color: Colors.red,
@@ -252,7 +222,7 @@ class _HomeState extends State<Home> {
             ),
           );
         } else {
-          return Center(
+          return const Center(
             child: Text('Loading.....'),
           );
         }
