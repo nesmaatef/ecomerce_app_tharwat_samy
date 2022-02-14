@@ -191,7 +191,6 @@ class _CartState extends State<Cart> {
                 ));
               }
             }),
-            // const Spacer(),
             Container(
               width: 200,
               height: 50,
